@@ -9,7 +9,6 @@ import os
 
 OpenAI.api_key=st.secrets["OPENAI_API_KEY"]
 
-
 def generate_synthetic_data(domain, formatted_column_names, num_rows):
     
     try:
@@ -22,7 +21,6 @@ def generate_synthetic_data(domain, formatted_column_names, num_rows):
     except Exception as e:
         st.sidebar.error(f"An error occurred: {e}")
         return None
-
 
 st.title('Synthetic Data Generator')
 
