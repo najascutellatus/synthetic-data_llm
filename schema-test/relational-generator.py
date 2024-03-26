@@ -16,13 +16,27 @@ def generate_sql_populator(sql_schema):
         response = OpenAI.chat.completions.create(model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful data analyst expert at SQL."},
-            {"role": "user", "content": f"Given the following SQL schema, generate SQL INSERT statements to populate the tables with synthetic data:\n\n{sql_schema}\n\n"}
+            {"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
         ])
         return response.choices[0].message.content.strip()
     except Exception as e:
         st.write(f"An error occurred: {e}")
 
-
+def generate_sql(sql_populator):
+    filename = "generated_sql_data.sql"
+    
+    # Writing the SQL populator text to a file
+    with open(filename, "w") as file:
+        file.write(sql_populator)
+    
+    # Creating a link for downloading
+    with open(filename, "rb") as file:
+        st.download_button(
+            label="Download SQL File",
+            data=file,
+            file_name=filename,
+            mime="text/sql"
+        )
 
 # Streamlit Webapp
 st.title("Relational Database Generator")
@@ -35,4 +49,5 @@ if definition_schema is not None:
     st.text_area("Uploaded SQL Schema", value=sql_schema, height=200, help="The SQL schema from your uploaded file.")
     if st.button("Generate Synthetic Data"):
         sql_populator = generate_sql_populator(sql_schema)
-        st.text_area("Synthetic SQL Data", value=sql_populator, height=400, help="Synthetic SQL INSERT statements generated based on the schema.")
+        st.text_area("Synthetic SQL Data", value=sql_populator, height=200, help="Synthetic SQL INSERT statements generated based on the schema.")
+        generate_sql(sql_populator)
