@@ -1,0 +1,5 @@
+user uploads sql schema (we use this later)
+we use openai to generate an sql file that has a lot of "INSERT INTO" 
+
+we use the uploaded schema to generate a database and then we use insert_into sql to populate INTO
+database can be outputed as bunch of csv files for the user to download 
