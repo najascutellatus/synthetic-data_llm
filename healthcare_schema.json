@@ -1,0 +1,346 @@
+{
+    "tables": [
+        {
+            "name": "Patients",
+            "columns": [
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "FirstName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "LastName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "DOB",
+                    "type": "DATE"
+                },
+                {
+                    "name": "Gender",
+                    "type": "CHAR"
+                },
+                {
+                    "name": "Address",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Phone",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Email",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "MedicalRecords",
+            "columns": [
+                {
+                    "name": "RecordID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Patients"
+                    ]
+                },
+                {
+                    "name": "VisitDate",
+                    "type": "DATE"
+                },
+                {
+                    "name": "DoctorID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Doctors"
+                    ]
+                },
+                {
+                    "name": "Diagnosis",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Treatment",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Appointments",
+            "columns": [
+                {
+                    "name": "AppointmentID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Patients"
+                    ]
+                },
+                {
+                    "name": "DoctorID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Doctors"
+                    ]
+                },
+                {
+                    "name": "AppointmentDate",
+                    "type": "DATETIME"
+                },
+                {
+                    "name": "Purpose",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Status",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Doctors",
+            "columns": [
+                {
+                    "name": "DoctorID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "FirstName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "LastName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Specialization",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Email",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Phone",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Staff",
+            "columns": [
+                {
+                    "name": "StaffID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "FirstName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "LastName",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Role",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Email",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Phone",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Departments",
+            "columns": [
+                {
+                    "name": "DepartmentID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "Name",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Location",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Phone",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "RoomAllocations",
+            "columns": [
+                {
+                    "name": "AllocationID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Patients"
+                    ]
+                },
+                {
+                    "name": "RoomID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Rooms"
+                    ]
+                },
+                {
+                    "name": "FromDate",
+                    "type": "DATE"
+                },
+                {
+                    "name": "ToDate",
+                    "type": "DATE"
+                }
+            ]
+        },
+        {
+            "name": "Rooms",
+            "columns": [
+                {
+                    "name": "RoomID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "RoomNumber",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "DepartmentID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Departments"
+                    ]
+                },
+                {
+                    "name": "Type",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Status",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Prescriptions",
+            "columns": [
+                {
+                    "name": "PrescriptionID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Patients"
+                    ]
+                },
+                {
+                    "name": "DoctorID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Doctors"
+                    ]
+                },
+                {
+                    "name": "DateIssued",
+                    "type": "DATE"
+                },
+                {
+                    "name": "Medication",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Dosage",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "Duration",
+                    "type": "VARCHAR"
+                }
+            ]
+        },
+        {
+            "name": "Insurance",
+            "columns": [
+                {
+                    "name": "InsuranceID",
+                    "type": "INT",
+                    "constraints": [
+                        "PK"
+                    ]
+                },
+                {
+                    "name": "PatientID",
+                    "type": "INT",
+                    "constraints": [
+                        "FK to Patients"
+                    ]
+                },
+                {
+                    "name": "Provider",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "PolicyNumber",
+                    "type": "VARCHAR"
+                },
+                {
+                    "name": "CoverageDetails",
+                    "type": "VARCHAR"
+                }
+            ]
+        }
+    ]
+}
