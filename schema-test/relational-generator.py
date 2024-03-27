@@ -38,6 +38,12 @@ def generate_sql(sql_populator):
             mime="text/sql"
         )
 
+def download_database(sql_populator):
+    return None
+    #this function takes in sql_populator which is a text file with sql input commands
+    #it outputs csv files that are populated with sql populator
+    #implemented on streamlit
+
 # Streamlit Webapp
 st.title("Relational Database Generator")
 st.text("this webapp accepts a SQL schema and generates a synthetic database")
@@ -51,3 +57,5 @@ if definition_schema is not None:
         sql_populator = generate_sql_populator(sql_schema)
         st.text_area("Synthetic SQL Data", value=sql_populator, height=200, help="Synthetic SQL INSERT statements generated based on the schema.")
         generate_sql(sql_populator)
+        if st.button("Download Database"):
+            download_database(sql_populator)

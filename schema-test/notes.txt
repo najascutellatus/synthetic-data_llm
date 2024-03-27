@@ -5,5 +5,4 @@ we use the uploaded schema to generate a database and then we use insert_into sq
 database can be outputed as bunch of csv files for the user to download
 
 
-
-write a parser for ```
+to do - 
