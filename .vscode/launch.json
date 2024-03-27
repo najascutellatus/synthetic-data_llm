@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug streamlit",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/mikesmith/miniconda3/envs/synthetic/bin/streamlit",  // /home/xx/tmp/venv/bin/streamlit",
+            "args": [
+                "run",
+                "streamlit_json.py"
+            ]
+        }
+    ]
+    }

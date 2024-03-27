@@ -38,6 +38,10 @@ def generate_synthetic_data(instruction, attempts=3):
             return ""
     return ""
 
+def parse_result(result):
+    split_result = result.split('```')
+    return split_result[1].strip('sql\n')
+    
 # Streamlit Webapp Interface
 st.title("Relational Database Generator")
 st.text("This webapp accepts a database schema and generates a synthetic database.")
@@ -51,6 +55,15 @@ if definition_schema is not None:
     
     if st.button("Generate Synthetic Data"):
         synthetic_data = generate_synthetic_data(structured_instruction)
+        # print(synthetic_data)
+        parsed = parse_result(synthetic_data)
         if synthetic_data:  # Only display if synthetic_data is not empty
             st.text_area("Synthetic SQL Data", value=synthetic_data, height=600, help="Synthetic SQL INSERT statements generated based on the schema.")
+            # Use the st.download_button to offer the SQL file for download
+            st.download_button(
+                label="Download SQL File",
+                data=parsed,
+                file_name="synthetic_data.sql",
+                mime="text/plain"  # MIME type indicating a plain text file
+                )
 
