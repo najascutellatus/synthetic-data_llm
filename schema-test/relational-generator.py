@@ -3,62 +3,85 @@ import openai as OpenAI
 import pandas as pd
 import numpy as np
 import json
+import re
 
-OpenAI.api_key=st.secrets["OPENAI_API_KEY"]
+# Initialize session state variables if they are not already initialized
+if 'schema' not in st.session_state:
+    st.session_state.schema = ""
+if 'uploaded' not in st.session_state:
+    st.session_state.uploaded = False
+if 'tables_detected' not in st.session_state:
+    st.session_state.tables_detected = False
+if 'table_rows' not in st.session_state:
+    st.session_state.table_rows = {}
+
+# Your existing API key setup
+OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
 def fileparser(definition_schema):
     # this method decodes the sql file
     content = definition_schema.getvalue().decode("utf-8")
     return content
 
-def generate_sql_populator(sql_schema):
+def detect_tables(schema):
+    pattern = re.compile(r"CREATE TABLE\s+([a-zA-Z_][a-zA-Z0-9_]*)", re.IGNORECASE)
+    # Find all matches in the schema text
+    tables = pattern.findall(schema)
+    return tables
+
+def openai_generator(sql_schema):
     #returns an sql file for populating
     try:
         response = OpenAI.chat.completions.create(model="gpt-3.5-turbo",
         messages=[
-            #{"role": "system", "content": "You are a helpful data analyst expert at SQL."},
-            #{"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL or JSON schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
-            {"role": "system", "content": "You are a helpful data analyst expert at schema and generating csv."},
-            {"role": "user", "content": f"Generate csv tables seperated by '```' with more than 1000 rows of synthetic values based on the following SQL schema. Provide only the csv code, no additional text.\n\n{sql_schema}\n\n-- Start of csv code --\n"}
+            {"role": "system", "content": "You are a helpful data analyst expert at SQL."},
+            {"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL or JSON schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
+            #{"role": "system", "content": "You are a helpful data analyst expert at schema and generating csv."},
+            #{"role": "user", "content": f"\n\n{sql_schema}\n\n"}
         ])
         return response.choices[0].message.content.strip()
     except Exception as e:
         st.write(f"An error occurred: {e}")
 
-def generate_sql(sql_populator):
-    filename = "generated_sql_data.sql"
-    
-    # Writing the SQL populator text to a file
-    with open(filename, "w") as file:
-        file.write(sql_populator)
-    
-    # Creating a link for downloading
-    with open(filename, "rb") as file:
-        st.download_button(
-            label="Download SQL File",
-            data=file,
-            file_name=filename,
-            mime="text/sql"
-        )
-
-def download_database(sql_populator):
-    return None
-    #this function takes in sql_populator which is a text file with sql input commands
-    #it outputs csv files that are populated with sql populator
-    #implemented on streamlit
-
-# Streamlit Webapp
+# Streamlit app code begins here
 st.title("Relational Database Generator")
-st.text("this webapp accepts a SQL schema and generates a synthetic database")
+st.text("This webapp accepts a SQL schema and generates a synthetic database")
 
-definition_schema = st.file_uploader("Upload a SQL file", type=["sql","json"])
+uploaded_schema = st.file_uploader("Upload a SQL file", type=["sql", "json"])
 
-if definition_schema is not None:
-    schema = fileparser(definition_schema)
-    st.text_area("Uploaded SQL Schema", value=schema, height=200, help="The SQL schema from your uploaded file.")
-    if st.button("Generate Synthetic Data"):
-        sql_populator = generate_sql_populator(schema)
-        st.text_area("Synthetic SQL Data", value=sql_populator, height=200, help="Synthetic SQL INSERT statements generated based on the schema.")
-        generate_sql(sql_populator)
-        if st.button("Download Database"):
-            download_database(sql_populator)
+# Check if a file has been uploaded
+if uploaded_schema is not None:
+    # Process the uploaded file
+    schema = fileparser(uploaded_schema)
+    st.session_state.schema = schema  # Store the processed schema in session state
+    st.session_state.uploaded = True  # Indicate that a file has been successfully uploaded
+else:
+    st.session_state.uploaded = False
+
+# Show the text area for the schema if a file has been uploaded
+if st.session_state.uploaded:
+    # Display the schema text area with the current schema from session state
+    st.session_state.schema = st.text_area("Uploaded SQL Schema", value=st.session_state.schema, height=200, help="The SQL schema from your uploaded file.")
+
+    # Button to detect tables, shown only if a schema has been uploaded
+    if st.button("Detect Tables"):
+        # Detect tables from the schema and update session state
+        st.session_state.tables = detect_tables(st.session_state.schema)
+        st.session_state.tables_detected = True  # Mark tables as detected
+        # Initialize or reset the row numbers for the detected tables
+        for table in st.session_state.tables:
+            st.session_state.table_rows[table] = 10
+
+# Display detected tables and row configuration inputs if tables have been detected
+if st.session_state.tables_detected:
+    st.write("Detected tables and row configurations:")
+    for table in st.session_state.tables:
+        # Input for specifying the number of rows for each table
+        st.session_state.table_rows[table] = st.number_input(f"Number of rows for {table}:", min_value=0, value=st.session_state.table_rows[table], step=1, key=table)
+
+    # Button to confirm the number of rows for each table
+    if st.button('Confirm Row Numbers'):
+        # Generate and display the configurations
+        formatted_configurations = ", ".join([f"{table}: {st.session_state.table_rows[table]}" for table in st.session_state.tables])
+        st.write("Configurations: " + formatted_configurations)
+        # Additional logic for what happens after confirmation can be added here
