@@ -1,0 +1,339 @@
+```
+DepartmentID,DepartmentName
+1,Cardiology
+2,Dermatology
+3,Neurology
+4,Orthopedics
+5,Oncology
+6,Pediatrics
+7,Surgery
+8,Psychiatry
+9,Endocrinology
+10,ENT
+11,Internal Medicine
+12,Ophthalmology
+13,Urology
+14,Radiology
+15,Allergy and Immunology
+16,Family Medicine
+17,Physical Therapy
+18,Oncology
+19,Anesthesiology
+20,Gastroenterology
+21,Hematology
+22,Infectious Disease
+23,Nephrology
+24,Pulmonology
+25,Rheumatology
+26,Plastic Surgery
+27,Obstetrics and Gynecology
+28,Pathology
+29,General Medicine
+30,Neurosurgery
+31,Cardiothoracic Surgery
+32,Vascular Surgery
+33,Podiatry
+34,Dental
+35,Dietetics
+36,Oncology
+37,Chiropractic
+38,Hypnotherapy
+39,Acupuncture
+40,Homeopathy
+41,Mental Health
+42,Rehabilitation
+43,Integrative Medicine
+44,Geriatrics
+45,Concierge Medicine
+46,Alternative Medicine
+47,Oral Surgery
+48,Veterinarian
+49,General Surgery
+50,Pharmacy
+51,Occupational Therapy
+52,Reproductive Medicine
+53,Speech Therapy
+54,Neonatology
+55,Addiction Medicine
+56,Forensic Psychiatry
+57,Sleep Medicine
+58,Acute Care
+59,Cardiac Surgery
+60,Chiropractic
+61,Colorectal Surgery
+62,Critical Care Medicine
+63,Hyperbaric Medicine
+64,Laser Surgery
+65,Otolaryngology
+66,Reproductive Endocrinology
+67,Sports Medicine
+68,Psychotherapy
+69,Ultrasound
+70,Pain Management
+71,Maxillofacial Surgery
+72,Cosmetic Surgery
+73,General Dentistry
+74,Neurotology
+75,Ophthalmic Surgery
+76,Cardiac Electrophysiology
+77,Lifestyle Medicine
+78,Optometry
+79,Hand Surgery
+80,Psychosomatic Medicine
+81,Telemedicine
+82,Travel Medicine
+83,Nutrition
+84,Genetics
+85,Male Fertility
+86,Pediatric Dentistry
+87,Pulmonary Medicine
+88,Interventional Cardiology
+89,Neuropsychology
+90,Art Therapy
+91,Diabetes Education
+92,Mayo Clinic
+93,Essential Medicine
+94,Mobile Health
+95,Telepsychiatry
+96,Laboratory Medicine
+97,Biochemistry
+98,Community Medicine
+99,Dental Implants
+100,Neurointerventional Surgery
+101,Dermatologic Surgery
+102,Hair Transplant
+103,Maternity Care
+104,Preventive Medicine
+105,Public Health
+106,Spa Medicine
+107,Postal Medicine
+108,Music Therapy
+109,Pet Therapy
+110,Animal Assisted Therapy
+111,Respiratory Therapy
+112,Childbirth Education
+113,Tai Chi
+114,Qi Gong
+115,Yoga
+116,Meditation
+117,Reiki
+118,Stress Management
+119,Bioidentical Hormones
+120,Minor Surgery
+121,Herbal Medicine
+122,Ayurveda
+123,Holistic Medicine
+124,Feng Shui
+125,Home Birth
+126,Mobile Clinic
+127,Child Psychiatry
+128,Forensic Pathology
+129,Endometriosis
+130,Lymphedema
+131,Parasitology
+132,Oral Pathology
+133,Carpal Tunnel Surgery
+134,Perinatology
+135,Critical Care Nursing
+136,Forensic Nursing
+137,Cardiovascular Nursing
+138,Holistic Nursing
+139,School Nursing
+140,Remote Nursing
+141,Plastic Surgery Nursing
+142,Orthodontic Nursing
+143,Lamaze Classes
+144,Oncology Nursing
+145,Prenatal Yoga
+146,Postnatal Massage
+147,Neonatal Nursing
+148,Emergency Nursing
+149,Medical Assisting
+150,Endocrine Surgery
+151,Tumor Biology
+152,Clinical Trial Management
+153,Community Health
+154,Rehabilitation Counseling
+155,Social Work
+156,Hospice and Palliative Care
+157,Medical Physics
+158,Pharmacology
+159,Bioengineering
+160,Dental Hygiene
+161,Physician Assistant
+162,Speech Pathology
+163,Podiatry Science
+164,Audiology
+165,Lactation Consultation
+166,Occupational Health
+167,Visual Rehabilitation
+168,Adolescent Medicine
+169,Chronic Disease Management
+170,Health Psychology
+171,Neuropathology
+172,Reproductive Genetics
+173,Speech and Language Pathology
+174,Audiology
+175,Surgical Assisting
+176,Psychiatric Nursing
+177,Hospice Nursing
+178,Dental Laboratory Technology
+179,Orthotics and Prosthetics
+180,Psychiatric Social Work
+181,Health Information Management
+182,Pharmacy Technician
+183,Occupational Therapy Assistant
+184,Recreational Therapy
+185,Respiratory Therapy
+186,Medical Transcription
+187,Anesthesiologist Assistant
+188,Cardiovascular Technology
+189,Nuclear Medicine Technology
+190,EKG Technician
+191,Ultrasound Technician
+192,Radiologic Technologist
+193,Medical Laboratory Technician
+194,Phlebotomy Technician
+195,Neurodiagnostic Technologist
+196,Physical Therapy Assistant
+197,Massage Therapy
+198,Medical Billing and Coding
+199,Medical Administrative
+200,Healthcare Management
+201,Healthcare Administration
+202,Health Informatics
+203,Health Policy
+204,Health Economics
+205,Public Health Administration
+206,Medical Sociology
+207,Medical Anthropology
+208,Health Geography
+209,Health Communication
+210,Health Literacy
+211,Preventive Health
+212,Environmental Health
+213,Occupational Health and Safety
+214,Radiation Protection
+215,Biostatistics
+216,Bioethics
+217,Health Advocacy
+218,Health Education
+219,Health Promotion
+220,Health Economics
+221,Health Policy
+222,Public Health Management
+223,Healthcare Quality
+224,Healthcare Marketing
+225,Health Information Technology
+226,Electronic Health Records
+227,Telehealth
+228,Healthcare Analytics
+229,Healthcare Finance
+230,Health Insurance
+231,Health Law
+232,Disaster Medicine
+233,Global Health
+234,International Health
+235,Travel Health
+236,Military Medicine
+237,Occupational Medicine
+238,Aviation Medicine
+239,Naval Medicine
+240,Tropical Medicine
+241,Remote Medicine
+242,Sports Medicine
+243,Performance Medicine
+244,Biomechanics
+245,Exercise Physiology
+246,Sports Nutrition
+247,Sports Psychology
+248,Sports Management
+249,Sports Coaching
+250,Athletic Training
+251,Strength and Conditioning
+252,Physical Preparation
+253,Rehabilitation Therapy
+254,Sports Massage
+255,Adaptive Sports
+256,Paralympics
+257,Athletic Development
+258,Recreational Sports
+259,Combat Sports
+260,Martial Arts
+261,Self-defense
+262,Combat Training
+263,Boxing
+264,Professional Wrestling
+265,Muay Thai
+266,Karate
+267,Taekwondo
+268,Judo
+269,Brazilian Jiu-Jitsu
+270,Capoeira
+271,Krav Maga
+272,Kickboxing
+273,Fencing
+274,Archery
+275,Shooting Sports
+276,Equestrian Sports
+277,Volleyball
+278,Tennis
+279,Badminton
+280,Table Tennis
+281,Squash
+282,Racquetball
+283,Basketball
+284,Softball
+285,Baseball
+286,American Football
+287,Soccer
+288,Rugby
+289,Cricket
+290,Hockey
+291,Handball
+292,Water Polo
+293,Rowing
+294,Sailing
+295,Swimming
+296,Diving
+297,Surfing
+298,Kayaking
+299,Canoeing
+300,Windsurfing
+301,Kitesurfing
+302,Stand-up Paddleboarding
+303,Scuba Diving
+304,Snorkeling
+305,Freediving
+306,Underwater Hockey
+307,Underwater Rugby
+308,Water Aerobics
+309,Aquatic Fitness
+310,Synchronized Swimming
+311,Dance
+312,Ballet
+313,Contemporary Dance
+314,Jazz Dance
+315,Hip Hop Dance
+316,Breakdancing
+317,Street Dance
+318,Ballroom Dance
+319,Latin Dance
+320,Salsa
+321,Bachata
+322,Kizomba
+323,Argentine Tango
+324,Swing Dance
+325,Lindy Hop
+326,Charleston
+327,Blues Dance
+328,Rock 'n' Roll
+329,Country Dancing
+330,Line Dancing
+331,Irish Dance
+332,Scottish Highland Dancing
+333,Tap Dance
+334,Clogging
+335,Folk Dance
+336,Traditiona...
+```

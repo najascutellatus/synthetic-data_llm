@@ -16,9 +16,10 @@ def generate_sql_populator(sql_schema):
     try:
         response = OpenAI.chat.completions.create(model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful data analyst expert at SQL."},
-            #{"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
-            {"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL or JSON schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
+            #{"role": "system", "content": "You are a helpful data analyst expert at SQL."},
+            #{"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL or JSON schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
+            {"role": "system", "content": "You are a helpful data analyst expert at schema and generating csv."},
+            {"role": "user", "content": f"Generate csv tables seperated by '```' with more than 1000 rows of synthetic values based on the following SQL schema. Provide only the csv code, no additional text.\n\n{sql_schema}\n\n-- Start of csv code --\n"}
         ])
         return response.choices[0].message.content.strip()
     except Exception as e:
