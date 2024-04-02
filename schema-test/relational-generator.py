@@ -29,15 +29,14 @@ def detect_tables(schema):
     tables = pattern.findall(schema)
     return tables
 
-def openai_generator(sql_schema):
+def openai_generator(schema, table_and_rows):
+    MAX_TOKENS = 4096
     #returns an sql file for populating
     try:
         response = OpenAI.chat.completions.create(model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful data analyst expert at SQL."},
-            {"role": "user", "content": f"Generate SQL INSERT statements for populating tables based on the following SQL or JSON schema. Provide only the SQL code, no additional text.\n\n{sql_schema}\n\n-- Start of SQL code --\n"}
-            #{"role": "system", "content": "You are a helpful data analyst expert at schema and generating csv."},
-            #{"role": "user", "content": f"\n\n{sql_schema}\n\n"}
+            {"role": "system", "content": "You are a helpful data analyst expert at generating synthetic data."},
+            {"role": "user", "content": f"Analyze the following schema - {schema}. The following are the specification for the number of rows for each table - {table_and_rows}. Generate csv file to populate the tables. Seperate each csv file with ```. Include only the csv file and no additional text"}
         ])
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -82,6 +81,7 @@ if st.session_state.tables_detected:
     # Button to confirm the number of rows for each table
     if st.button('Confirm Row Numbers'):
         # Generate and display the configurations
-        formatted_configurations = ", ".join([f"{table}: {st.session_state.table_rows[table]}" for table in st.session_state.tables])
-        st.write("Configurations: " + formatted_configurations)
+        table_and_rows = ", ".join([f"{table}: {st.session_state.table_rows[table]}" for table in st.session_state.tables])
+        st.markdown(openai_generator(schema,table_and_rows))
+        #st.write("Configurations: " + formatted_configurations)
         # Additional logic for what happens after confirmation can be added here
