@@ -2,8 +2,7 @@ import streamlit as st
 import openai as OpenAI
 import json
 
-# Configure OpenAI API key
-OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
+
 
 def fileparser(definition_schema):
     """Decodes the uploaded JSON file."""
@@ -50,7 +49,7 @@ definition_schema = st.file_uploader("Upload a JSON file", type="json")
 
 if definition_schema is not None:
     schema = fileparser(definition_schema)
-    structured_instruction = format_instruction(schema, n=10)
+    structured_instruction = format_instruction(schema, n=100)
     st.text_area("Formatted Instruction", value=structured_instruction, height=300, help="Formatted instruction for generating synthetic data.")
     
     if st.button("Generate Synthetic Data"):
