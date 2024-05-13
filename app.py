@@ -169,7 +169,7 @@ if 'schema' in st.session_state:
 if 'tables' in st.session_state and st.session_state['db_initialized']:
     st.write("Detected tables and row configurations:")
     for table in st.session_state.tables:
-        st.session_state.table_rows[table] = st.sidebar.number_input(f"Number of rows for {table}:", min_value=1, value=100, step=1, key=table)
+        st.session_state.table_rows[table] = st.sidebar.number_input(f"Number of rows for {table}:", min_value=1, value=15, step=1, key=table)
 
 
     table_and_rows = ", ".join([f"{table}: {st.session_state.table_rows[table]}" for table in st.session_state['tables']])
